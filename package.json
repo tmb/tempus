@@ -8,6 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "chrono-node": "^1.4.6",
+    "moment": "^2.25.3",
+    "moment-timezone": "^0.5.29",
     "next": "9.4.0",
     "react": "16.13.1",
     "react-dom": "16.13.1"

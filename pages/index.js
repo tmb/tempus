@@ -1,209 +1,117 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
+import chrono from 'chrono-node'
+import moment from 'moment'
+import TimezoneGrid from '../components/TimezoneGrid'
 
 export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+	let [date, setDate] = useState(Date.now())
+	let [currentTime, setCurrentTime] = useState(moment(date).format('h:mm A'))
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+	useEffect(() => {
+		setCurrentTime(moment(date).format('h:mm A'))
+	}, [date])
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+	const timeChange = (value) => {
+		if (value == '') {
+			setDate(Date.now())
+			return
+		}
+		let parse = chrono.parse(value + ' today')
+		if (typeof parse[0].start !== 'undefined') {
+			setDate(parse[0].start.date())
+		}
+	}
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+	return (
+		<>
+			<Head>
+				<title>Tempus 🕒</title>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap"
+					rel="stylesheet"
+				/>
+			</Head>
+			<main>
+				<div className="vertCenter">
+					<h1>Tempus 🕒</h1>
+					<input
+						autoFocus
+						placeholder={currentTime}
+						onChange={(e) => timeChange(e.target.value)}
+						type="text"
+					/>
+				</div>
+				<div className="vertCenter">
+					<h2>{currentTime} your time is...</h2>
+				</div>
+				<TimezoneGrid date={date} />
+				<div className="vertCenter footer">
+					<a href="https://tmb.sh">Built by Theo with ☀️ & 👨‍💻</a>
+				</div>
+			</main>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+			<style jsx>{`
+				.footer {
+					margin-top: 2rem;
+				}
 
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+				.footer a {
+					color: white;
+				}
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+				main {
+					padding: 2rem;
+					max-width: 64rem;
+					width: 100%;
+					margin: auto;
+				}
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+				h2 {
+					margin-bottom: 2rem;
+					color: white;
+				}
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+				h1 {
+					color: white;
+					font-size: 4em;
+					flex-basis: 100%;
+					text-align: center;
+					margin-bottom: 1.5rem;
+				}
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+				.vertCenter {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+				}
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+				input {
+					margin-bottom: 2rem;
+					color: white;
+					height: 8rem;
+					width: 100%;
+					font-size: 5rem;
+					text-align: center;
+					box-shadow: -4px 4px 20px 2px #424242;
+					border: 3px solid white;
+					border-radius: 10px;
+					outline: none;
+				}
 
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
-  )
+				input::focus {
+					outline: none;
+				}
+			`}</style>
+			<style jsx global>{`
+				* {
+					margin: 0;
+					padding: 0;
+					box-sizing: border-box;
+					background-color: #242424;
+					font-family: 'Roboto Slab', serif;
+				}
+			`}</style>
+		</>
+	)
 }
