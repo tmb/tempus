@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Meta from '../components/Meta'
 import { useState, useEffect } from 'react'
 import chrono from 'chrono-node'
 import moment from 'moment'
@@ -26,7 +27,7 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Tempus 🕒</title>
+				<Meta/>
 				<link
 					href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap"
 					rel="stylesheet"
