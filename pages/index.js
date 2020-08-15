@@ -116,7 +116,7 @@ function Main() {
 		<>
 			<Head>
 				<title>Tempus 🕒</title>
-				<script src="https://cdn.usefathom.com/script.js" site="KRRGUANX" defer></script>
+				<script src="https://meadowlark.tempus.im/script.js" site="KRRGUANX" defer></script>
 				<meta property="og:title" content="Tempus 🕒" />
 				<meta name="twitter:title" content="Tempus 🕒" />
 				<meta name="og:url" content="https://tempus.im" />
