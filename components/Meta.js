@@ -16,6 +16,8 @@ export default ({
     <meta property="og:description" content={description} />
     <meta name="twitter:description" content={description} />
     <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="2048" />
+    <meta property="og:image:height" content="1152" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={image} />
     <meta name="msapplication-TileColor" content="#242424" />
