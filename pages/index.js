@@ -4,14 +4,10 @@ import { useState, useEffect } from 'react'
 import chrono from 'chrono-node'
 import moment from 'moment'
 import TimezoneGrid from '../components/TimezoneGrid'
+import dynamic from 'next/dynamic'
 
-export default function Home() {
+function Home() {
 	let [date, setDate] = useState(Date.now())
-	let [currentTime, setCurrentTime] = useState(moment(date).format('h:mm A'))
-
-	useEffect(() => {
-		setCurrentTime(moment(date).format('h:mm A'))
-	}, [date])
 
 	const timeChange = (value) => {
 		if (value == '') {
@@ -24,10 +20,13 @@ export default function Home() {
 		}
 	}
 
+	const currentTime = moment(date).format('h:mm A')
+
 	return (
 		<>
 			<Head>
-				<Meta/>
+				<Meta />
+				<title>Tempus 🕒</title>
 				<link
 					href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap"
 					rel="stylesheet"
@@ -116,3 +115,10 @@ export default function Home() {
 		</>
 	)
 }
+
+Home.getInitialProps = async (ctx) => {
+	return {}
+}
+
+// only render on the client because otherwise you get weird timezone issues
+export default dynamic(async () => Home, { ssr: false })
