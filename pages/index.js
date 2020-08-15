@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Meta from '../components/Meta'
 import { useState, useEffect } from 'react'
 import chrono from 'chrono-node'
 import moment from 'moment'
