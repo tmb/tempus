@@ -23,70 +23,6 @@ function Home() {
 
 	return (
 		<>
-			<Head>
-				<title>Tempus 🕒</title>
-				<meta property="og:title" content="Tempus 🕒" />
-				<meta name="twitter:title" content="Tempus 🕒" />
-				<meta name="og:url" content="https://tempus.im" />
-				<meta property="og:type" content="website" />
-				<meta property="og:site_name" content="Tempus 🕒" />
-				<meta
-					name="description"
-					content="Quickly & easily convert between multiple timezones."
-				/>
-				<meta
-					property="og:description"
-					content="Quickly & easily convert between multiple timezones."
-				/>
-				<meta
-					name="twitter:description"
-					content="Quickly & easily convert between multiple timezones."
-				/>
-				<meta
-					property="og:image"
-					content="https://tempus.im/card.png"
-				/>
-				<meta property="og:image:width" content="2048" />
-				<meta property="og:image:height" content="1152" />
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta
-					name="twitter:image"
-					content="https://tempus.im/card.png"
-				/>
-				<meta name="msapplication-TileColor" content="#242424" />
-				<meta name="theme-color" content="#242424" />
-
-				<link
-					rel="apple-touch-icon"
-					sizes="180x180"
-					href="/apple-touch-icon.png"
-				/>
-				<link
-					rel="icon"
-					type="image/png"
-					sizes="32x32"
-					href="/favicon-32x32.png"
-				/>
-				<link
-					rel="icon"
-					type="image/png"
-					sizes="16x16"
-					href="/favicon-16x16.png"
-				/>
-				<link rel="manifest" href="/site.webmanifest" />
-				<link
-					rel="mask-icon"
-					href="/safari-pinned-tab.svg"
-					color="#242424"
-				/>
-				<meta name="msapplication-TileColor" content="#242424" />
-				<meta name="theme-color" content="#242424" />
-				<title>Tempus 🕒</title>
-				<link
-					href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap"
-					rel="stylesheet"
-				/>
-			</Head>
 			<main>
 				<div className="vertCenter">
 					<h1>Tempus 🕒</h1>
@@ -171,9 +107,85 @@ function Home() {
 	)
 }
 
+const DynamicHome = dynamic(async () => Home, {
+  ssr: false
+})
+
+function Main() {
+	return (
+		<>
+			<Head>
+				<title>Tempus 🕒</title>
+				<meta property="og:title" content="Tempus 🕒" />
+				<meta name="twitter:title" content="Tempus 🕒" />
+				<meta name="og:url" content="https://tempus.im" />
+				<meta property="og:type" content="website" />
+				<meta property="og:site_name" content="Tempus 🕒" />
+				<meta
+					name="description"
+					content="Quickly & easily convert between multiple timezones."
+				/>
+				<meta
+					property="og:description"
+					content="Quickly & easily convert between multiple timezones."
+				/>
+				<meta
+					name="twitter:description"
+					content="Quickly & easily convert between multiple timezones."
+				/>
+				<meta
+					property="og:image"
+					content="https://tempus.im/card.png"
+				/>
+				<meta property="og:image:width" content="2048" />
+				<meta property="og:image:height" content="1152" />
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta
+					name="twitter:image"
+					content="https://tempus.im/card.png"
+				/>
+				<meta name="msapplication-TileColor" content="#242424" />
+				<meta name="theme-color" content="#242424" />
+
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="/apple-touch-icon.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="32x32"
+					href="/favicon-32x32.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="16x16"
+					href="/favicon-16x16.png"
+				/>
+				<link rel="manifest" href="/site.webmanifest" />
+				<link
+					rel="mask-icon"
+					href="/safari-pinned-tab.svg"
+					color="#242424"
+				/>
+				<meta name="msapplication-TileColor" content="#242424" />
+				<meta name="theme-color" content="#242424" />
+				<title>Tempus 🕒</title>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap"
+					rel="stylesheet"
+				/>
+			</Head>
+			<DynamicHome/>
+			</>
+		)
+}
+
 Home.getInitialProps = async (ctx) => {
 	return {}
 }
 
 // only render on the client because otherwise you get weird timezone issues
-export default dynamic(async () => Home, { ssr: false })
+export default Main
