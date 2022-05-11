@@ -9,15 +9,18 @@ export default ({ date }) => {
 		'America/Denver': 'Denver, US',
 		'America/Los_Angeles': 'Los Angeles, US',
 		'America/Juneau': 'Juneau, AK, US',
+		'Pacific/Honolulu:': 'Honolulu, HI, US',
 		'Europe/Moscow': 'Moscow, RU',
 		'Asia/Tokyo': 'Tokyo, JP',
 		'Asia/Shanghai': 'Shanghai, CN',
 		'Asia/Singapore': 'Singapore, SG',
+		'Asia/Dubai': 'Dubai, UAE',
 		'Asia/Kolkata': 'Kolkata, IN',
 		'Europe/Paris': 'Paris, FR',
 		'Europe/London': 'London, UK',
 		'Australia/Perth': 'Perth, AU',
 		'Australia/Sydney': 'Sydney, AU',
+		'Pacific/Auckland': 'Auckland, NZ'
 	}
 
 	return (
